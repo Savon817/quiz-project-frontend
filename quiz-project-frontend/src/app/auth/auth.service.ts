@@ -13,4 +13,8 @@ export class AuthService {
   signup(user: any){
     return this.http.post(this.baseUrl + 'create', user);
   }
+
+  login(user: any){
+    return this.http.post(this.baseUrl + 'login', user);
+  }
 }
