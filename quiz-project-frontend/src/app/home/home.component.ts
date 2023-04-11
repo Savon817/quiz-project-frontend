@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { QuizService } from '../shared/services/quiz.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private http: HttpClient) { }
+  suggestedQuizzes: any = []
+  constructor(private quizService:QuizService) { }
 
   ngOnInit(): void {
-    console.log(this.http.get('http://localhost:3000/api/v1/quizzes'));
+    this.quizService.fetchQuiz().subscribe((res: any) =>{
+      console.log(res);
+      if(res.success){
+        this.suggestedQuizzes = res.payload.suggested;
+      }
+    })
   }
 
 }
