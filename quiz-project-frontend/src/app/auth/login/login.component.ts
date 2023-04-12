@@ -23,11 +23,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((res: any) => {
       if(res.success){
         this.userService.setCurrentUser(res.payload.user);
-        this.authService.setToken(res.payload.token);
         this.route.navigate(['/home']);
+        this.authService.setToken(res.payload.token);
+        console.log(res);
       }
     })
-    console.log(this.loginForm.value);
+    // console.log(this.loginForm.value);
   }
 
   ngOnInit(): void {

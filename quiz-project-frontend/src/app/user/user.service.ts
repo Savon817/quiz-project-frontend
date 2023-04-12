@@ -14,4 +14,8 @@ export class UserService {
   setCurrentUser(user: User) {
     this.currentUserSubject.next(user);
   }
+
+  public get currentUser(): User {
+    return this.currentUserSubject.value;
+  }
 }

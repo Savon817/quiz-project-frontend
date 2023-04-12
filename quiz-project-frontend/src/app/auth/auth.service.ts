@@ -34,21 +34,42 @@ export class AuthService {
     }
   }
 
+  removeToke(){
+    localStorage.removeItem('token');
+  }
+
   autoLogin(){
     const token = this.getToken();
-
-    if(token){
-      this.route.navigate(['/login']);
-    } else{
-      this.http.get(this.baseUrl + 'me', {
-        headers: {
-          'Authorization': `Bearer ${token.value}`
-        }
-      }).subscribe((user: User) => {
-        this.userService.setCurrentUser(user);
-        this.route.navigate(['/home']);
-      })
+    if(!token){
+      return;
     }
+
+    this.http.get(this.baseUrl + 'me', {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    }).subscribe((res: any) => {
+      if(res.success){
+        console.log(res.payload.user);
+        this.userService.setCurrentUser(res.payload.user);
+        console.log(res);
+        this.route.navigate(['/home']);
+      }
+    })
+
+    // if(token){
+    //   this.route.navigate(['/login']);
+    // } else{
+    //   this.http.get(this.baseUrl + 'me', {
+    //     headers: {
+    //       Authorization: `Bearer ${token.value}`
+    //     }
+    //   }).subscribe((res: any) => {
+    //     console.log(res);
+    //     this.userService.setCurrentUser(res.payload.user);
+    //     this.route.navigate(['/home']);
+    //   })
+    // }
   }
 
   logout(){
