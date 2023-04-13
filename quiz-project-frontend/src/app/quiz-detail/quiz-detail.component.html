@@ -1,0 +1,13 @@
+<!-- header -->
+<header *ngIf="quiz">
+  <h1>{{quiz.title}}</h1>
+  <h2>By {{creator.username}}</h2>
+</header>
+
+<!-- quiz description -->
+<div *ngIf="quiz">
+  <p>{{quiz.description}}</p>
+  <p *ngFor="let question of quizQuestion">{{question.possible_answers}}</p>
+</div>
+
+
