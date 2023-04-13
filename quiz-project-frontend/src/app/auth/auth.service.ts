@@ -50,10 +50,10 @@ export class AuthService {
       }
     }).subscribe((res: any) => {
       if(res.success){
-        console.log(res.payload.user);
+        // console.log(res.payload.user);
         this.userService.setCurrentUser(res.payload.user);
-        console.log(res);
-        this.route.navigate(['/home']);
+        // console.log(res);
+        // this.route.navigate(['/home']);
       }
     })
 

@@ -9,13 +9,23 @@ import { QuizService } from '../shared/services/quiz.service';
 })
 export class HomeComponent implements OnInit {
   suggestedQuizzes: any = []
+  randomQuizzes: any = []
+
   constructor(private quizService:QuizService) { }
 
+
   ngOnInit(): void {
-    this.quizService.fetchQuiz().subscribe((res: any) =>{
-      console.log(res);
+    
+    this.quizService.fetchSuggestedQuiz().subscribe((res: any) =>{
       if(res.success){
+        console.log(res);
         this.suggestedQuizzes = res.payload.suggested;
+      }
+    })
+    this.quizService.fetchRandomQuiz().subscribe((res: any) =>{
+      if(res.success){
+        console.log(res);
+        this.randomQuizzes = res.payload.random;
       }
     })
   }
