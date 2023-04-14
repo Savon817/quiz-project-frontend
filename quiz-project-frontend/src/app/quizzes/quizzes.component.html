@@ -1,18 +1,17 @@
 
 <main class="container" style="color: white">
-    <p>Quizzes works!</p>
-    <div class="row mb-2">
-        <div class="col-md-6" >
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <!-- <div class="col p-4 d-flex flex-column position-static">
-            <h3 class="mb-0">{{ quiz.title}}</h3>
-            <div class="mb-1 text-muted">{{quiz.created_at}}</div>
-            <p class="mb-auto">{{ quiz.description }}</p>
-            <a routerLink="/quizzes/{{quiz.id}}" class="stretched-link">Take Quiz</a>
-            </div> -->
-            <div class="col-auto d-none d-lg-block">
-            </div>
-        </div>
+    <div class="row mb-2" >
+        <div class="col-md-6" *ngFor="let quiz of quizzes">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+              <h3 class="mb-0">{{ quiz.title }}</h3>
+              <div class="mb-1 text-muted">{{quiz.created_at}}</div>
+              <p class="mb-auto">{{ quiz.description }}</p>
+              <a routerLink="/quizzes/{{quiz.id}}" class="stretched-link">Take Quiz</a>
+              </div>
+              <div class="col-auto d-none d-lg-block">
+              </div>
+          </div>
         </div>
     </div>
 </main>

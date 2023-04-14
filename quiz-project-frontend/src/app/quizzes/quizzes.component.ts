@@ -16,7 +16,8 @@ export class QuizzesComponent implements OnInit {
     this.quizService.fetchQuizzes().subscribe((res:any) => {
       if(res.success)
       console.log(res);
-      this.quizzes = res.payload
+      this.quizzes = res.payload.quiz
+      console.log(this.quizzes);
     })
   }
 
