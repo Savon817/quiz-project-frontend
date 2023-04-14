@@ -16,6 +16,9 @@
         <!-- <li class="nav-item">
           <a  class="nav-link" routerLink='/home' *ngIf="currentUser">Quizzes</a>
         </li> -->
+        <li>
+          <a class="nav-link" routerLink="/quizzes" *ngIf="currentUser">Quizzes</a>
+        </li>
         <li class="nav-item">
           <button class="btn btn-danger" (click)="logout()" *ngIf="currentUser">Log Out</button>
         </li>

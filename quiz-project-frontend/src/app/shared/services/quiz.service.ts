@@ -10,6 +10,10 @@ export class QuizService {
 
   constructor(private http:HttpClient) { }
 
+  // createQuiz(){
+  //   return this.http.post
+  // }
+
   fetchSuggestedQuiz(){
     return this.http.get(`${URL}/quizzes/home`)
   }
@@ -20,5 +24,9 @@ export class QuizService {
 
   fetchQuiz(id:number){
     return this.http.get(`${URL}/quizzes/${id}`)
+  }
+
+  fetchQuizzes(){
+    return this.http.get(`${URL}/quizzes`)
   }
 }

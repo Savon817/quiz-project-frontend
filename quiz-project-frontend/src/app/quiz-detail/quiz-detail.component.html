@@ -4,10 +4,27 @@
   <h2>By {{creator.username}}</h2>
 </header>
 
+<form >
+  <div *ngIf="quiz" style="color: white;">
+    <p>{{quiz.description}}</p>
+    <div>
+
+    </div>
+    
+    <div class="form-check" *ngFor="let question of quizQuestion">
+      <h2>{{question.question}}</h2>
+      <!-- container for possible questions -->
+      <div *ngFor="let answer of question.possible_answers">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          {{answer}}
+        </label>
+      </div>
+      
+    </div>
+  </div>
+</form>
 <!-- quiz description -->
-<div *ngIf="quiz">
-  <p>{{quiz.description}}</p>
-  <p *ngFor="let question of quizQuestion">{{question.possible_answers}}</p>
-</div>
+
 
 
