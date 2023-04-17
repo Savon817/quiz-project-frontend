@@ -2,22 +2,21 @@
 <header *ngIf="quiz">
   <h1>{{quiz.title}}</h1>
   <h2>By {{creator.username}}</h2>
+  <p>{{quiz.description}}</p>
 </header>
 
-<form >
-  <div *ngIf="quiz" style="color: white;">
-    <p>{{quiz.description}}</p>
-    <div>
+<br>
 
-    </div>
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+  <div *ngIf="quiz" style="color: white;">
     <div *ngFor="let question of quizQuestion; let i = index">
       <fieldset id="group[{{i}}]">
-        <h2>{{question.question}}</h2>
+        <p>Question {{i+1}}: {{question.question}}</p>
         <div class="form-check" >
           <!-- container for possible questions -->
           <div *ngFor="let answer of question.possible_answers">
-            <input class="form-check-input" type="radio" name="group[{{i}}]" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="group[{{i}}]" [value]="answer">
+            <label class="form-check-label" for="answer">
               {{answer}}
             </label>
           </div>
@@ -29,8 +28,10 @@
           </div> -->
         </div>
       </fieldset>
+      <p>---------------------------------------------------------------------------------------------------</p>
     </div>
   </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!quizForm.valid">Turn in Quiz!</button>
 </form>
 <!-- quiz description -->
 
