@@ -10,12 +10,13 @@
 <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
   <div *ngIf="quiz" style="color: white;">
     <div *ngFor="let question of quizQuestion; let i = index">
-      <fieldset id="group[{{i}}]">
+      <fieldset id="question{{i}}">
         <p>Question {{i+1}}: {{question.question}}</p>
-        <div class="form-check" >
+        <div class="form-check">
           <!-- container for possible questions -->
           <div class="radio" *ngFor="let answer of question.possible_answers">
-            <input class="form-check-input" type="radio"  name="group[{{i}}]" [value]="answer">
+            <input class="form-check-input" type="radio" name="question{{i}}" [value]="answer"
+              formControlName="{{'question'+i}}">
             <label class="form-check-label" for="answer">
               {{answer}}
             </label>
@@ -25,9 +26,6 @@
       <p>---------------------------------------------------------------------------------------------------</p>
     </div>
   </div>
-  <button class="btn btn-primary" type="submit" [disabled]="!quizForm.valid">Turn in Quiz!</button>
+  <button class="btn btn-primary" type="submit">Turn in Quiz!</button>
 </form>
 <!-- quiz description -->
-
-
-
