@@ -10,8 +10,8 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
 })
 export class QuizDetailComponent implements OnInit {
 
-  // quizForm = new FormGroup({})
-  quizForm:any = []
+  quizForm = new FormGroup({})
+  // quizForm:any = []
   // quizForm = this.fb.group({
   //   answer: ['']
   // })
@@ -62,8 +62,9 @@ export class QuizDetailComponent implements OnInit {
           this.creator = res.payload.quiz.user;
           this.quizQuestion = res.payload.quiz.questions;
           console.log(res.payload.quiz.questions[0].possible_answers);
+          this.quizForm = this.fb.group({})
           this.quizQuestion.forEach((question, i) => {
-            this.quizForm[`question${i}`] = new FormControl(`${res.payload.quiz.questions[i].possible_answers[i]}`, Validators.required)
+            this.quizForm.addControl(`question${i}`, new FormControl('', Validators.required));
           })
           console.log("Quizform", this.quizForm)
         }
