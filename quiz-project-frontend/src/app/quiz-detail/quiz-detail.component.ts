@@ -11,7 +11,7 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
 export class QuizDetailComponent implements OnInit {
 
   quizForm = new FormGroup({
-
+    
   })
 
   // quizForm = this.fb.group({
@@ -34,7 +34,7 @@ export class QuizDetailComponent implements OnInit {
           this.creator = res.payload.quiz.user;
           this.quizQuestion = res.payload.quiz.questions;
           console.log(res.payload.quiz.questions[0].possible_answers);
-
+          
         }
       });
     })

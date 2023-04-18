@@ -14,18 +14,12 @@
         <p>Question {{i+1}}: {{question.question}}</p>
         <div class="form-check" >
           <!-- container for possible questions -->
-          <div *ngFor="let answer of question.possible_answers">
-            <input class="form-check-input" type="radio" name="group[{{i}}]" [value]="answer">
+          <div class="radio" *ngFor="let answer of question.possible_answers">
+            <input class="form-check-input" type="radio"  name="group[{{i}}]" [value]="answer">
             <label class="form-check-label" for="answer">
               {{answer}}
             </label>
           </div>
-          <!-- <div class="form-check" *ngFor="let answer of question.possible_answers">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              {{answer}}
-            </label>
-          </div> -->
         </div>
       </fieldset>
       <p>---------------------------------------------------------------------------------------------------</p>
