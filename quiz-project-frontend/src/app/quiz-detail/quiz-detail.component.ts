@@ -10,7 +10,8 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
 })
 export class QuizDetailComponent implements OnInit {
 
-  quizForm = new FormGroup({})
+  // quizForm = new FormGroup({})
+  quizForm:any = []
   // quizForm = this.fb.group({
   //   answer: ['']
   // })
@@ -25,29 +26,29 @@ export class QuizDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
 
 
-      let questions: any = [
-        {
-          question: "This is a test",
-          possible_answers: ["1", "2", "3", "4"]
-        },
-        {
-          question: "This is a test",
-          possible_answers: []
-        },
-        {
-          question: "This is a test",
-          possible_answers: []
-        }
-      ]
+      // let questions: any = [
+      //   {
+      //     question: "This is a test",
+      //     possible_answers: ["1", "2", "3", "4"]
+      //   },
+      //   {
+      //     question: "This is a test",
+      //     possible_answers: []
+      //   },
+      //   {
+      //     question: "This is a test",
+      //     possible_answers: []
+      //   }
+      // ]
 
-      let questionsFormControls: any = {};
+      // let questionsFormControls: any = {};
 
-      questions.forEach((question, i) => {
-        questionsFormControls[`questions${i}`] = new FormControl('What is this', Validators.required);
-      })
+      // questions.forEach((question, i) => {
+      //   questionsFormControls[`questions${i}`] = new FormControl('What is this', Validators.required);
+      // })
 
 
-      console.log("questionsformcontrols", questionsFormControls)
+      // console.log("questionsformcontrols", questionsFormControls)
       // quizForm = new FormGroup({
       //   question0: new FormControl('', Validators.required),
       //   question1: new FormControl('', Validators.required),
@@ -62,9 +63,9 @@ export class QuizDetailComponent implements OnInit {
           this.quizQuestion = res.payload.quiz.questions;
           console.log(res.payload.quiz.questions[0].possible_answers);
           this.quizQuestion.forEach((question, i) => {
-            this.quizForm[`question${i}`] = new FormControl('', Validators.required)
+            this.quizForm[`question${i}`] = new FormControl(`${res.payload.quiz.questions[i].possible_answers[i]}`, Validators.required)
           })
-          console.log(this.quizQuestion[0])
+          console.log("Quizform", this.quizForm)
         }
       });
     })
