@@ -59,10 +59,10 @@ export class QuizDetailComponent implements OnInit {
           this.creator = res.payload.quiz.user;
           this.quizQuestion = res.payload.quiz.questions;
           console.log(res.payload.quiz.questions[0].possible_answers);
-          
+
           // create a new FormGroup with an empty object
           this.quizForm = this.fb.group({})
-          
+
           // iterate through each question in the quiz
           this.quizQuestion.forEach((question, i) => {
             // create a new FormControl for each question
@@ -77,7 +77,15 @@ export class QuizDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.quizForm.value);
-  }
+    const quizId = this.quiz.id;
 
+    this.quizService.submitQuiz(quizId, this.quizForm.value).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
 }
