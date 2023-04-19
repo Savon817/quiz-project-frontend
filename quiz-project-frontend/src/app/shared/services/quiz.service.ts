@@ -29,4 +29,8 @@ export class QuizService {
   fetchQuizzes(){
     return this.http.get(`${URL}/quizzes`)
   }
+  
+//   submitQuiz(quizId: number, answers:any){
+//     return this.http.post(`${URL}/quizzes/${quizId}/quiz_attempts`, answers)
+//   }
 }
